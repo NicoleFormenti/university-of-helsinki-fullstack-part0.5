@@ -3,11 +3,23 @@
         participant browser
         participant server
 
-        Note right of browser: the request contains the application/json data, which contains both the new note and the date
-        browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+        browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
         activate server
-        server-->>browser: 201 created;
+        server-->>browser: text/html document
         deactivate server
 
-        Note right of browser: the server does not request a redirect, it simply adds the note to the browser
+        browser->>server: https://studies.cs.helsinki.fi/exampleapp/main.css
+        activate server
+        server-->>browser: text/css file
+        deactivate server
+
+        browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+        activate server
+        server-->>browser: application/javascript file
+        deactivate server
+
+        browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+        activate server
+        server-->>browser: application/json data file
+        deactivate server
 ```
